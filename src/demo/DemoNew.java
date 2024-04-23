@@ -15,8 +15,8 @@ public class DemoNew {
 	String seeMoreLink = "//span[contains(text(),'See more')]";
 	
 	//Test data 
-	String emailID = "sebastianselvarajaug89@gmail.com";
-	String passwordText = "Aug9962335682#";
+	String emailID = "";
+	String passwordText = "";
 	
 	//Initiate a browser driver - @here use FireFoxDriver
 	
@@ -37,8 +37,8 @@ public class DemoNew {
 		driver.get("https://www.facebook.com/");
 		//driver.manage().window().setSize(new Dimension(320, 680));
 		driver.manage().window().maximize();
-		driver.findElement(By.id("email")).sendKeys("sebastianselvarajaug89@gmail.com");
-		driver.findElement(By.id("pass")).sendKeys("Aug9962335682#");
+		driver.findElement(By.id("email")).sendKeys("");
+		driver.findElement(By.id("pass")).sendKeys("");
 		driver.findElement(By.name("login")).click();
 		String title = driver.getTitle();
 		if(title.equals("Facebook")){
