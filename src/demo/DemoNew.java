@@ -39,13 +39,19 @@ public class DemoNew {
 		driver.manage().window().maximize();
 		driver.findElement(By.id("email")).sendKeys("");
 		driver.findElement(By.id("pass")).sendKeys("");
-		driver.findElement(By.name("login")).click();
-		String title = driver.getTitle();
-		if(title.equals("Facebook")){
-			System.out.println("The title is present "+title);
-		}else {
-			System.out.println("The title Facebook is not present "+title);
-		}
+		//driver.findElement(By.name("login")).click();
+//		String title = driver.getTitle();
+//		if(title.equals("Facebook")){
+//			System.out.println("The title is present "+title);
+//		}else {
+//			System.out.println("The title Facebook is not present "+title);
+//		}
+		String attr = driver.findElement(By.name("login")).getAttribute("data-testid");
+		System.out.println(attr);
+		
+		Dimension dimension = driver.findElement(By.name("login")).getSize();
+		System.out.println(dimension.width+ " "+dimension.height);
+		
 		
 //		driver.findElement(By.id(email)).sendKeys(emailID);
 //		driver.findElement(By.id(password)).sendKeys(passwordText);
