@@ -3,6 +3,8 @@ package demo;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 
 public class MultipleTabsTest {
 
@@ -30,9 +32,38 @@ public class MultipleTabsTest {
 		
 	}
 	
+	public void launchAmazonSiteWithActions() {
+		driver.get(url);
+		driver.manage().window().maximize();
+		//Actions Class provides methods to perform mouse and keyboard events
+		Actions action = new Actions(driver);
+		//Action is a functional interface it has only one abstract method which is perform()
+		Action act;
+		action.moveToElement(driver.findElement(By.id(searchBarID))).click().keyDown(Keys.SHIFT).sendKeys("iphone").keyDown(Keys.SHIFT).click().build().perform();
+		WebElement dealElement = driver.findElement(By.xpath("//h2[contains(text(),'Toys for your kids | Amazon brands')]"));
+		action.scrollByAmount(897,776).build().perform();
+		//action.moveToElement(dealElement,187, 777).click().build().perform();
+		
+	}
+	
 	public void testWebElements() {
 		driver.get(url);
 		driver.manage().window().maximize();
+		String elementText = driver.findElement(By.id("nav-link-accountList-nav-line-1")).getText();
+		System.out.println(elementText);
+		
+		String tagName = driver.findElement(By.id("nav-link-accountList-nav-line-1")).getTagName();
+		System.out.println(tagName);
+		String className = driver.findElement(By.id("nav-link-accountList-nav-line-1")).getAttribute("class");
+		System.out.println(className);
+		String backgroundColor= driver.findElement(By.cssSelector("div.nav-search-submit")).getCssValue("background-color");
+		System.out.println(backgroundColor);
+		Dimension object = driver.findElement(By.cssSelector("div.nav-search-submit")).getSize();
+		System.out.println(object.width + " * "+ object.height);
+		
+		Point object2 = driver.findElement(By.cssSelector("div.nav-search-submit")).getLocation();
+		System.out.println(object2.x + " * "+ object2.y);
+		
 		boolean result=driver.findElement(By.id(searchBarID)).isDisplayed();
 		System.out.println("The value of boolean is "+result);
 		if(result) {
@@ -51,7 +82,8 @@ public class MultipleTabsTest {
 	public static void main(String[] args) {
 		MultipleTabsTest test = new MultipleTabsTest();
 		//test.launchAmazonSite();
-		test.testWebElements();
+		//test.testWebElements();
+		test.launchAmazonSiteWithActions();
 		
 	}
 
