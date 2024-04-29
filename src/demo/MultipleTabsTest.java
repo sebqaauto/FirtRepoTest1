@@ -39,11 +39,14 @@ public class MultipleTabsTest {
 		Actions action = new Actions(driver);
 		//Action is a functional interface it has only one abstract method which is perform()
 		Action act;
-		action.moveToElement(driver.findElement(By.id(searchBarID))).click().keyDown(Keys.SHIFT).sendKeys("iphone").keyDown(Keys.SHIFT).click().build().perform();
-		WebElement dealElement = driver.findElement(By.xpath("//h2[contains(text(),'Toys for your kids | Amazon brands')]"));
-		action.scrollByAmount(897,776).build().perform();
-		//action.moveToElement(dealElement,187, 777).click().build().perform();
-		
+		//action.moveToElement(driver.findElement(By.id(searchBarID))).click().keyDown(Keys.SHIFT).sendKeys("iphone").keyDown(Keys.SHIFT).click().build().perform();
+		WebElement dealElement = driver.findElement(By.xpath("//h2[contains(text(),'Today’s Deals')]"));
+		//action.scrollByAmount(897,776).build().perform();
+		//action.moveToElement(dealElement).click().build().perform();
+		Point point = dealElement.getLocation();
+		//action.moveToElement(dealElement, point.x, point.y).build().perform();
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true)",dealElement);
+		((JavascriptExecutor) driver).executeScript("arguments[0].click()",dealElement);
 	}
 	
 	public void testWebElements() {

@@ -15,8 +15,8 @@ public class DemoNew {
 	String seeMoreLink = "//span[contains(text(),'See more')]";
 	
 	//Test data 
-	String emailID = "";
-	String passwordText = "";
+	String emailID = "Test@Test.com";
+	String passwordText = "Test90932894";
 	
 	//Initiate a browser driver - @here use FireFoxDriver
 	
@@ -37,20 +37,20 @@ public class DemoNew {
 		driver.get("https://www.facebook.com/");
 		//driver.manage().window().setSize(new Dimension(320, 680));
 		driver.manage().window().maximize();
-		driver.findElement(By.id("email")).sendKeys("");
-		driver.findElement(By.id("pass")).sendKeys("");
-		//driver.findElement(By.name("login")).click();
+		driver.findElement(By.id("email")).sendKeys(emailID);
+		driver.findElement(By.id("pass")).sendKeys(passwordText);
+		driver.findElement(By.name("login")).click();
 //		String title = driver.getTitle();
 //		if(title.equals("Facebook")){
 //			System.out.println("The title is present "+title);
 //		}else {
 //			System.out.println("The title Facebook is not present "+title);
 //		}
-		String attr = driver.findElement(By.name("login")).getAttribute("data-testid");
-		System.out.println(attr);
+		//String attr = driver.findElement(By.name("login")).getAttribute("data-testid");
+		//System.out.println(attr);
 		
-		Dimension dimension = driver.findElement(By.name("login")).getSize();
-		System.out.println(dimension.width+ " "+dimension.height);
+		//Dimension dimension = driver.findElement(By.name("login")).getSize();
+		//System.out.println(dimension.width+ " "+dimension.height);
 		
 		
 //		driver.findElement(By.id(email)).sendKeys(emailID);
