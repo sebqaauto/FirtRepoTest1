@@ -40,8 +40,8 @@ public class DropDownDatePickerTest {
 		//Find a WebElement which point to the Select tag and pass the WebElement to the Select class constructor
 		WebElement monthDropDown = driver.findElement(By.cssSelector("select.ui-datepicker-month"));
 		Select select = new Select(monthDropDown);
-		//select.selectByIndex(0);
-		//select.selectByValue("11");
+		select.selectByIndex(0);
+		select.selectByValue("11");
 		select.selectByVisibleText("Aug");
 		driver.findElement(By.xpath("//a[contains(text(),'"+day+"')]")).click();
 		
