@@ -1,5 +1,6 @@
 package demo;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
@@ -7,6 +8,8 @@ import java.util.TreeMap;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class WebTableTest {
 	
@@ -21,6 +24,7 @@ public class WebTableTest {
 	WebDriver driver = new FirefoxDriver();
 	
 	//tr>td:nth-child(1)
+	String emailAddress = "monica@dezlearn.com";
 	
 	public void launchWebTable() throws InterruptedException {
 		driver.get("https://www.dezlearn.com/webtable-example/");
@@ -59,14 +63,29 @@ public class WebTableTest {
 		System.out.println(entry);
 	}
 	
-	List<WebElement> comments = driver.findElements(By.cssSelector("tr>td:nth-child(6)"));
+	List<WebElement> comments = driver.findElements(By.cssSelector("tr>td:nth-child(6)>input"));
 	
 	for (WebElement webElement : comments) {
-		Thread.sleep(3000);
+		//Thread.sleep(5000);
+		//WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		//wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("tr>td:nth-child(6)")));
+		
 		webElement.sendKeys("Sample Test Comment");
 	}
+	//Interact with the checkboxes  tr>td:nth-child(4)>input
 	
+List<WebElement> premiumCheckboxes = driver.findElements(By.cssSelector("tr>td:nth-child(4)>input"));
 	
+	for (WebElement webElement : premiumCheckboxes) {
+		//Thread.sleep(5000);
+		//WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		//wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("tr>td:nth-child(6)")));
+		
+		webElement.click();
+	}
+	// - //td[text()='john@dezlearn.com']/following-sibling::td[1]/input
+	
+	driver.findElement(By.xpath("//td[text()='"+emailAddress+"']/following-sibling::td[1]/input")).click();
 	}
 	
 	public static void main(String[] args) {
