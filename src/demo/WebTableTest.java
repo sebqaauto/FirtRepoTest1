@@ -23,7 +23,7 @@ public class WebTableTest {
 	
 	WebDriver driver = new FirefoxDriver();
 	
-	//tr>td:nth-child(1)
+	//Use this variable to pass a specific email address dynamically to an xpath locator
 	String emailAddress = "monica@dezlearn.com";
 	
 	public void launchWebTable() throws InterruptedException {
@@ -33,7 +33,7 @@ public class WebTableTest {
 	List<WebElement> tableColumns = driver.findElements(By.xpath("//table/tbody/tr[2]/td"));
 	System.out.println("The total number of rows and columns are "+tablesRows.size()+ " -- "+tableColumns.size());
 	
-//Find all the users and get their text from the table and store it inside a List of Strings
+	//Find all the users and get their text from the table and store it inside a List of Strings
 	List<WebElement> users = driver.findElements(By.cssSelector("tr>td:nth-child(1)"));
 	for (WebElement webElement : users) {
 		String str = webElement.getText();
@@ -62,29 +62,22 @@ public class WebTableTest {
 		System.out.println(entry.getKey()+ " --"+entry.getValue());
 		System.out.println(entry);
 	}
-	
+	//Interact with the comments input text field
 	List<WebElement> comments = driver.findElements(By.cssSelector("tr>td:nth-child(6)>input"));
 	
 	for (WebElement webElement : comments) {
-		//Thread.sleep(5000);
-		//WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-		//wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("tr>td:nth-child(6)")));
 		
 		webElement.sendKeys("Sample Test Comment");
 	}
-	//Interact with the checkboxes  tr>td:nth-child(4)>input
 	
-List<WebElement> premiumCheckboxes = driver.findElements(By.cssSelector("tr>td:nth-child(4)>input"));
-	
+	//Interact with the check boxes  tr>td:nth-child(4)>input
+	List<WebElement> premiumCheckboxes = driver.findElements(By.cssSelector("tr>td:nth-child(4)>input"));
 	for (WebElement webElement : premiumCheckboxes) {
-		//Thread.sleep(5000);
-		//WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-		//wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("tr>td:nth-child(6)")));
 		
 		webElement.click();
 	}
-	// - //td[text()='john@dezlearn.com']/following-sibling::td[1]/input
 	
+	// To pick a locator based on another locator Ex: based an on email address, select the check box for that user's email alone
 	driver.findElement(By.xpath("//td[text()='"+emailAddress+"']/following-sibling::td[1]/input")).click();
 	}
 	

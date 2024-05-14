@@ -57,8 +57,6 @@ Set<String> windowTitle = new LinkedHashSet<>();
 			String title = driver.getTitle();
 			windowTitle.add(title);
 		}
-		
-		
 	}
 	
 	public void getAllWindowHandles() {

@@ -1,10 +1,15 @@
 package demo;
 
+import java.io.File;
+import java.io.IOException;
+
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
+
+import com.google.common.io.Files;
 
 public class MultipleTabsTest {
 
@@ -82,12 +87,32 @@ public class MultipleTabsTest {
 
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		MultipleTabsTest test = new MultipleTabsTest();
 		//test.launchAmazonSite();
 		//test.testWebElements();
-		test.launchAmazonSiteWithActions();
+		//test.launchAmazonSiteWithActions();
+		test.launchAmazonSite2();
 		
+	}
+	
+	public void takeSnap(String snapName) throws IOException {
+		String fileName = snapName+".jpg";
+		File file = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		Files.copy(file, new File("/Users/Sebastian/Desktop/EclipseWorkSpace/PageObjectsTest/DemoWebShop/"+fileName));
+	}
+	
+	public String getPageTitle() {
+		String title = driver.getTitle();
+		return title;
+		
+	}
+	
+	public void launchAmazonSite2() throws IOException {
+		driver.get(url);
+		driver.manage().window().maximize();
+		String title = getPageTitle();
+		takeSnap(title);
 	}
 
 }
